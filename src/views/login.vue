@@ -24,7 +24,7 @@
           </span>
         </el-form-item>
         <el-form-item>
-          <el-button :loading="loading" type="primary" @click="submitForm('ruleForm')">登录</el-button>
+          <el-button :loading="loading" type="primary" @click="submit('ruleForm')">登录</el-button>
           <el-button  type="primary" @click="dj">dj</el-button>
         </el-form-item>
       </el-form>
@@ -59,7 +59,7 @@ export default {
     };
   },
   methods: {
-    submitForm(formName) {
+    submit(formName) {
       this.$refs[formName].validate(async valid => {
         if (valid) {
           this.loading = true
