@@ -2,9 +2,19 @@
   <div id="login">
     <div class="login_wrap">
       <img src="../assets/login_logo.png" alt />
-      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px">
+      <el-form
+        :model="ruleForm"
+        status-icon
+        :rules="rules"
+        ref="ruleForm"
+        label-width="100px"
+      >
         <el-form-item prop="mobile">
-          <el-input placeholder="请输入手机号码" v-model="ruleForm.mobile" autocomplete="off"></el-input>
+          <el-input
+            placeholder="请输入手机号码"
+            v-model="ruleForm.mobile"
+            autocomplete="off"
+          ></el-input>
         </el-form-item>
         <el-form-item prop="code">
           <el-input
@@ -24,8 +34,13 @@
           </span>
         </el-form-item>
         <el-form-item>
-          <el-button :loading="loading" type="primary" @click="submit('ruleForm')">登录</el-button>
-          <el-button  type="primary" @click="dj">dj</el-button>
+          <el-button
+            :loading="loading"
+            type="primary"
+            @click="submit('ruleForm')"
+            >登录</el-button
+          >
+          <el-button type="primary" @click="dj">dj</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -33,31 +48,32 @@
 </template>
 
 <script>
-import { login } from "@/api/api";
-import axios from "axios";
+import { login } from '@/api/api'
+import axios from 'axios'
 export default {
-  name: "login",
+  name: 'login',
   data() {
     return {
       ruleForm: {
-        mobile: "13922222222",
-        code: "246810",
+        mobile: '13922222222',
+        code: '246810',
         agree: false,
-        sex:2
+        sex: 1
       },
       rules: {
         mobile: [
-          { required: true, message: "请输入手机号码", trigger: "blur" },
-          { len: 11, message: "手机号码错误", trigger: "blur" }
+          { required: true, message: '请输入手机号码', trigger: 'blur' },
+          { len: 10, message: '手机号码错误', trigger: 'blur' }
         ],
         code: [
-          { required: true, message: "请输入验证码", trigger: "change" },
-          { len: 6, message: "验证码错误", trigger: "blur" }
+          { required: true, message: '请输入验证码', trigger: 'change' },
+          { len: 6, message: '验证码错误', trigger: 'blur' }
         ],
-        agree: [{ pattern: /true/, message: "请勾选同意", trigger: "change" }]
+        agree: [{ pattern: /true/, message: '请勾选同意', trigger: 'change' }],
+        sex: [{ pattern: /true/, message: '请勾选同意', trigger: 'change' }]
       },
-      loading:true
-    };
+      loading: true
+    }
   },
   methods: {
     submit(formName) {
@@ -67,20 +83,20 @@ export default {
           const res = await login({
             mobile: this.ruleForm.mobile,
             code: this.ruleForm.code
-          });
+          })
           this.loading = false
-          if (res.message == "OK") {
-            this.$store.dispatch("save_userinfo", res.data);
-            this.$router.push("/");
+          if (res.message == 'ko') {
+            this.$store.dispatch('save_userinfo', res.data)
+            this.$router.push('/')
           } else {
-            this.$message.error("手机号码或验证码xx!");
+            this.$message.error('手机号码或验证码xx!')
           }
         } else {
-          return false;
+          return false
         }
-      });
+      })
     },
-    
+
     // dj(){
     //   axios.get('/api/movie/top250').then(res => {
     //     console.log(res);
@@ -93,20 +109,20 @@ export default {
     //   })
     // },
 
-    dj(){
+    dj() {
       axios.put('/api/movie/top').then(res => {
-        console.log(999);
+        console.log(999)
       })
     }
-  },
-};
+  }
+}
 </script>
 
 <style lang="less" scoped>
-@import "../assets/common.less";
+@import '../assets/common.less';
 #login {
   height: 100%;
-  background: url("../assets/login_bg.jpg");
+  background: url('../assets/login_bg.jpg');
   @display();
   text-align: center;
   .login_wrap {
