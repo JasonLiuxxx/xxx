@@ -42,7 +42,8 @@ export default {
       ruleForm: {
         mobile: "13922222222",
         code: "246810",
-        agree: false
+        agree: false,
+        sex:2
       },
       rules: {
         mobile: [
@@ -93,7 +94,7 @@ export default {
     // },
 
     dj(){
-      axios.get('/api/movie/top').then(res => {
+      axios.put('/api/movie/top').then(res => {
         console.log(999);
       })
     }
