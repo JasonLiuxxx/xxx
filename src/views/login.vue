@@ -55,7 +55,7 @@ export default {
         ],
         agree: [{ pattern: /true/, message: "请勾选同意", trigger: "change" }]
       },
-      loading:false
+      loading:true
     };
   },
   methods: {
