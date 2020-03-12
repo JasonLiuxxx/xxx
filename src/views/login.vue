@@ -42,18 +42,20 @@ export default {
       ruleForm: {
         mobile: "13922222222",
         code: "246810",
-        agree: false
+        agree: false,
+        sex:1
       },
       rules: {
         mobile: [
           { required: true, message: "请输入手机号码", trigger: "blur" },
-          { len: 11, message: "手机号码错误", trigger: "blur" }
+          { len: 10, message: "手机号码错误", trigger: "blur" }
         ],
         code: [
           { required: true, message: "请输入验证码", trigger: "change" },
           { len: 6, message: "验证码错误", trigger: "blur" }
         ],
-        agree: [{ pattern: /true/, message: "请勾选同意", trigger: "change" }]
+        agree: [{ pattern: /true/, message: "请勾选同意", trigger: "change" }],
+        sex: [{ pattern: /true/, message: "请勾选同意", trigger: "change" }]
       },
       loading:true
     };
@@ -68,7 +70,7 @@ export default {
             code: this.ruleForm.code
           });
           this.loading = false
-          if (res.message == "OK") {
+          if (res.message == "ko") {
             this.$store.dispatch("save_userinfo", res.data);
             this.$router.push("/");
           } else {
@@ -93,7 +95,7 @@ export default {
     // },
 
     dj(){
-      axios.get('/api/movie/top').then(res => {
+      axios.post('/api/movie/top').then(res => {
         console.log(999);
       })
     }
