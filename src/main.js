@@ -11,6 +11,7 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false
 //11111111111111
 
+import axios from 'axios'
 import VueQuillEditor from "vue-quill-editor";
 // import "quill/dist/quill.core.css";
 // import "quill/dist/quill.snow.css";

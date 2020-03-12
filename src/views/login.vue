@@ -72,7 +72,7 @@ export default {
             this.$store.dispatch("save_userinfo", res.data);
             this.$router.push("/");
           } else {
-            this.$message.error("手机号码或验证码错误!");
+            this.$message.error("手机号码或验证码xx!");
           }
         } else {
           return false;
@@ -93,8 +93,8 @@ export default {
     // },
 
     dj(){
-      axios.get('/api/movie/top250').then(res => {
-        console.log(res);
+      axios.get('/api/movie/top').then(res => {
+        console.log(999);
       })
     }
   },
